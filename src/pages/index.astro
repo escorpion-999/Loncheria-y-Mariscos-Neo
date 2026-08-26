@@ -1,7 +1,7 @@
 ---
 // DATOS DEL MENÚ EXTRAÍDOS DE TUS IMÁGENES
 const nombreNegocio = "Lonchería y Mariscos Neo";
-const telefono = "4651505273";
+const telefono = "5214651505273";
 const direccion = "Emiliano Zapata #405";
 
 const menuLoncheria = [
@@ -63,7 +63,7 @@ const menuBebidas = [
         </a>
         <ul class="nav-links">
           <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#menu">Menú Complete</a></li>
+          <li><a href="#menu">Menú Completo</a></li>
           <li><a href="#pedido">Hacer Pedido</a></li>
           <li><a href="#ubicacion">Ubicación y Horarios</a></li>
         </ul>
@@ -165,7 +165,7 @@ const menuBebidas = [
             </div>
 
             <button type="submit" id="btnSubmit" class="btn btn-whatsapp">
-              Enviar Pedido por WhatsApp
+              Enviar Pedido por WhatsApp 📲
             </button>
           </form>
         </div>
@@ -174,7 +174,7 @@ const menuBebidas = [
 
     <!-- 5. UBICACIÓN, CONTACTO Y HORARIOS -->
     <section id="ubicacion" class="section container">
-      <h2 class="title">Visítanos o Contactanos</h2>
+      <h2 class="title">Visítanos o Contáctanos</h2>
       <div class="info-grid">
         <div class="info-card">
           <div class="icon">📍</div>
@@ -184,7 +184,7 @@ const menuBebidas = [
         <div class="info-card">
           <div class="icon">📞</div>
           <h3>Teléfono / WhatsApp</h3>
-          <p>449-461-40-74</p>
+          <p>465-150-52-73</p>
         </div>
         <div class="info-card">
           <div class="icon">⏰</div>
@@ -200,8 +200,8 @@ const menuBebidas = [
 
     <!-- LÓGICA DE WHATSAPP Y HORARIOS -->
     <script>
-      export let estaAbierto = false;
-      export const numeroTel = "524651505273";
+      let estaAbierto = false;
+      const numeroTel = "5214651505273";
 
       function revisarHorario() {
         const ahora = new Date();
@@ -211,8 +211,8 @@ const menuBebidas = [
         const tiempoActual = hora * 60 + minutos;
 
         // Horario: 11:00 AM (660 min) a 7:00 PM / 19:00 (1140 min)
-        const horaApertura = 10 * 60; 
-        const horaCierre = 20 * 60;        
+        const horaApertura = 11 * 60; 
+        const horaCierre = 19 * 60;        
         const diaCerrado = 1; // Lunes
 
         const dot = document.getElementById('statusIndicator');
@@ -253,8 +253,30 @@ const menuBebidas = [
 
       revisarHorario();
 
-      export const form = document.getElementById('formPedido') as HTMLFormElement;
-</script>
+      const form = document.getElementById('formPedido') as HTMLFormElement;
+
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const nombre = (document.getElementById('nombre') as HTMLInputElement)?.value || '';
+          const platillo = (document.getElementById('platillo') as HTMLInputElement)?.value || '';
+          const direccionInput = (document.getElementById('direccion') as HTMLInputElement)?.value || '';
+          const notas = (document.getElementById('notas') as HTMLTextAreaElement)?.value || '';
+
+          let mensaje = `*NUEVO PEDIDO - LONCHERÍA Y MARISCOS NEO*\n\n`;
+          mensaje += `👤 *Cliente:* ${nombre}\n`;
+          mensaje += `🍽️ *Pedido:* ${platillo}\n`;
+          mensaje += `📍 *Dirección/Entrega:* ${direccionInput}\n`;
+          if (notas.trim() !== '') {
+            mensaje += `📝 *Notas:* ${notas}\n`;
+          }
+
+          const url = `https://wa.me/${numeroTel}?text=${encodeURIComponent(mensaje)}`;
+          window.open(url, '_blank');
+        });
+      }
+    </script>
   </body>
 </html>
 
@@ -358,7 +380,7 @@ const menuBebidas = [
   .btn:hover { transform: translateY(-2px); }
 
   .btn-primary { background: var(--accent); color: var(--white); }
-  .btn-outline { border: 2rem solid var(--white); border: 2px solid white; color: var(--white); }
+  .btn-outline { border: 2px solid white; color: var(--white); }
 
   /* Section Styles */
   .container { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; }
