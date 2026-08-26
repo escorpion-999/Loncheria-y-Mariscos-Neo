@@ -1,0 +1,471 @@
+---
+// DATOS DEL MENÚ EXTRAÍDOS DE TUS IMÁGENES
+const nombreNegocio = "Lonchería y Mariscos Neo";
+const telefono = "4651505273";
+const direccion = "Emiliano Zapata #405";
+
+const menuLoncheria = [
+  { nombre: "Sandwich", precio: "$35" },
+  { nombre: "Nuggets", precio: "$65" },
+  { nombre: "Salchipulpos", precio: "$50" },
+  { nombre: "Enchiladas Verdes", precio: "$65" },
+  { nombre: "Hamburguesa de Res", precio: "Con papas $90 | Sin papas $70" },
+  { nombre: "Hamburguesa de Pollo", precio: "Con papas $85 | Sin papas $65" },
+  { nombre: "Hamburguesa de Pescado", precio: "Con papas $85 | Sin papas $65" },
+  { nombre: "Pechuga a la Plancha", precio: "$115" },
+  { nombre: "Pechuga Empanizada", precio: "$120" },
+  { nombre: "Pechuga Rellena", precio: "$170" },
+];
+
+const menuMariscos = [
+  { nombre: "Filete a la Plancha", precio: "$120" },
+  { nombre: "Filete Empanizado", precio: "$130" },
+  { nombre: "Filete a la Diabla", precio: "$155" },
+  { nombre: "Camarones Empanizados", precio: "$160" },
+  { nombre: "Camarones a la Diabla", precio: "$170" },
+  { nombre: "Camarones Rellenos", precio: "$185" },
+  { nombre: "Coctel Chico", precio: "Con pulpo $75 | Sin pulpo $65" },
+  { nombre: "Coctel Mediano", precio: "Con pulpo $120 | Sin pulpo $110" },
+  { nombre: "Coctel Grande", precio: "Con pulpo $165 | Sin pulpo $150" },
+];
+
+const menuCeviches = [
+  { nombre: "Orden de Aguachile", precio: "$170" },
+  { nombre: "Orden Ceviche de Pescado", precio: "$120" },
+  { nombre: "Orden Ceviche de Camarón", precio: "$160" },
+  { nombre: "Tostada de Aguachile", precio: "$50" },
+  { nombre: "Tostada Ceviche de Pescado", precio: "$35" },
+  { nombre: "Tostada Ceviche de Camarón", precio: "$45" },
+];
+
+const menuBebidas = [
+  { nombre: "Jugos", precio: "$25" },
+  { nombre: "Refrescos", precio: "$25" },
+  { nombre: "Agua Fresca 1/2 Litro", precio: "$20" },
+  { nombre: "Agua Fresca 1 Litro", precio: "$35" },
+];
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{nombreNegocio}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- 1. BARRA DE NAVEGACIÓN -->
+    <header class="header">
+      <nav class="nav-container">
+        <a href="#" class="logo">
+          <span class="logo-icon">🦐</span> {nombreNegocio}
+        </a>
+        <ul class="nav-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#menu">Menú Complete</a></li>
+          <li><a href="#pedido">Hacer Pedido</a></li>
+          <li><a href="#ubicacion">Ubicación y Horarios</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- 2. HERO / INICIO -->
+    <section id="inicio" class="hero">
+      <div class="hero-content">
+        <div class="badge-hero">¡El mejor sabor del mar! 🌊</div>
+        <h1>{nombreNegocio}</h1>
+        <p>Mariscos frescos, lonches sabrosos y el mejor sazón para consentir a tu paladar.</p>
+        <div class="hero-btns">
+          <a href="#pedido" class="btn btn-primary">Pedir por WhatsApp 📲</a>
+          <a href="#menu" class="btn btn-outline">Ver Menú 📜</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SECCIÓN DE MENÚ COMPLETO -->
+    <section id="menu" class="section container">
+      <h2 class="title">Nuestro Menú</h2>
+      <p class="subtitle">Preparado al momento con ingredientes frescos</p>
+
+      <div class="menu-grid">
+        <!-- Lonchería -->
+        <div class="menu-card">
+          <h3>🥪 Lonchería</h3>
+          <ul>
+            {menuLoncheria.map(i => (
+              <li><span>{i.nombre}</span> <strong>{i.precio}</strong></li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Mariscos -->
+        <div class="menu-card highlighted">
+          <h3>🍤 Mariscos</h3>
+          <ul>
+            {menuMariscos.map(i => (
+              <li><span>{i.nombre}</span> <strong>{i.precio}</strong></li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Ceviches y Aguachiles -->
+        <div class="menu-card">
+          <h3>🍋 Ceviches y Aguachiles</h3>
+          <ul>
+            {menuCeviches.map(i => (
+              <li><span>{i.nombre}</span> <strong>{i.precio}</strong></li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Bebidas -->
+        <div class="menu-card">
+          <h3>🥤 Bebidas</h3>
+          <ul>
+            {menuBebidas.map(i => (
+              <li><span>{i.nombre}</span> <strong>{i.precio}</strong></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FORMULARIO DE PEDIDOS POR WHATSAPP + HORARIO -->
+    <section id="pedido" class="section bg-light">
+      <div class="container">
+        <div class="pedido-box">
+          <div class="pedido-header">
+            <h2>Haz tu Pedido Directo</h2>
+            <div class="status-badge">
+              <span id="statusIndicator" class="status-dot"></span>
+              <span id="statusText">Verificando horario...</span>
+            </div>
+          </div>
+
+          <form id="formPedido">
+            <div class="form-group">
+              <label for="nombre">Tu Nombre:</label>
+              <input type="text" id="nombre" placeholder="Ej. Maria López" required />
+            </div>
+
+            <div class="form-group">
+              <label for="platillo">¿Qué deseas pedir?:</label>
+              <input type="text" id="platillo" placeholder="Ej. 1 Orden de Aguachile y 2 Refrescos" required />
+            </div>
+
+            <div class="form-group">
+              <label for="direccion">Dirección de entrega (o indicar para pasar a recoger):</label>
+              <input type="text" id="direccion" placeholder="Calle, número y colonia" required />
+            </div>
+
+            <div class="form-group">
+              <label for="notas">Notas o detalles especiales:</label>
+              <textarea id="notas" placeholder="Ej. Sin cebolla, extra salsa..."></textarea>
+            </div>
+
+            <button type="submit" id="btnSubmit" class="btn btn-whatsapp">
+              Enviar Pedido por WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. UBICACIÓN, CONTACTO Y HORARIOS -->
+    <section id="ubicacion" class="section container">
+      <h2 class="title">Visítanos o Contactanos</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="icon">📍</div>
+          <h3>Ubicación</h3>
+          <p>{direccion}</p>
+        </div>
+        <div class="info-card">
+          <div class="icon">📞</div>
+          <h3>Teléfono / WhatsApp</h3>
+          <p>449-461-40-74</p>
+        </div>
+        <div class="info-card">
+          <div class="icon">⏰</div>
+          <h3>Horario de Atención</h3>
+          <p>Martes a Domingo: 11:00 AM - 7:00 PM<br><strong>Lunes: Cerrado</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 {nombreNegocio}. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- LÓGICA DE WHATSAPP Y HORARIOS -->
+    <script>
+      export let estaAbierto = false;
+      export const numeroTel = "524651505273";
+
+      function revisarHorario() {
+        const ahora = new Date();
+        const dia = ahora.getDay(); // 0 = Domingo, 1 = Lunes...
+        const hora = ahora.getHours();
+        const minutos = ahora.getMinutes();
+        const tiempoActual = hora * 60 + minutos;
+
+        // Horario: 11:00 AM (660 min) a 7:00 PM / 19:00 (1140 min)
+        const horaApertura = 11 * 60; 
+        const horaCierre = 20 * 60;        
+        const diaCerrado = 1; // Lunes
+
+        const dot = document.getElementById('statusIndicator');
+        const text = document.getElementById('statusText');
+        const btn = document.getElementById('btnSubmit') as HTMLButtonElement;
+
+        if (!dot || !text || !btn) return;
+
+        if (dia === diaCerrado) {
+          estaAbierto = false;
+          text.innerText = "Cerrado hoy (Descanso)";
+          dot.className = "status-dot red";
+          bloquearBoton(btn, "Cerrado los Lunes");
+        } else if (tiempoActual >= horaApertura && tiempoActual < horaCierre) {
+          estaAbierto = true;
+          text.innerText = "¡Abierto Ahora! Toma de pedidos activa";
+          dot.className = "status-dot green";
+          desbloquearBoton(btn);
+        } else {
+          estaAbierto = false;
+          text.innerText = "Cerrado por el momento";
+          dot.className = "status-dot red";
+          bloquearBoton(btn, "Fuera de Horario");
+        }
+      }
+
+      function bloquearBoton(btn: HTMLButtonElement, msg: string) {
+        btn.disabled = true;
+        btn.innerText = `⛔ ${msg}`;
+        btn.classList.add('disabled');
+      }
+
+      function desbloquearBoton(btn: HTMLButtonElement) {
+        btn.disabled = false;
+        btn.innerText = "Enviar Pedido por WhatsApp 📲";
+        btn.classList.remove('disabled');
+      }
+
+      revisarHorario();
+
+      export const form = document.getElementById('formPedido') as HTMLFormElement;
+</script>
+  </body>
+</html>
+
+<!-- ESTILOS PROFESIONALES -->
+<style>
+  :root {
+    --primary: #0284c7;
+    --primary-dark: #0369a1;
+    --accent: #f97316;
+    --bg-light: #f0f9ff;
+    --text-dark: #0f172a;
+    --white: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    background-color: #fafafa;
+    scroll-behavior: smooth;
+  }
+
+  /* Header / Nav sticky */
+  .header {
+    position: sticky;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 100;
+  }
+
+  .nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--primary); }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=1400&q=80') center/cover;
+    color: var(--white);
+    padding: 6rem 1.5rem;
+    text-align: center;
+  }
+
+  .hero-content { max-width: 700px; margin: 0 auto; }
+
+  .badge-hero {
+    background: var(--accent);
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
+  .hero p { font-size: 1.15rem; margin-bottom: 2rem; opacity: 0.9; }
+
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* Buttons */
+  .btn {
+    padding: 0.8rem 1.6rem;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s, background-color 0.2s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+
+  .btn-primary { background: var(--accent); color: var(--white); }
+  .btn-outline { border: 2rem solid var(--white); border: 2px solid white; color: var(--white); }
+
+  /* Section Styles */
+  .container { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; }
+  .bg-light { background-color: var(--bg-light); }
+  .title { text-align: center; font-size: 2.2rem; font-weight: 800; color: var(--primary-dark); }
+  .subtitle { text-align: center; margin-bottom: 3rem; color: #64748b; }
+
+  /* Grid Menú */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .menu-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+  }
+
+  .menu-card.highlighted { border: 2px solid var(--primary); }
+
+  .menu-card h3 {
+    color: var(--primary);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--bg-light);
+  }
+
+  .menu-card ul { list-style: none; }
+  .menu-card li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    gap: 0.5rem;
+  }
+
+  /* Formulario Pedido */
+  .pedido-box {
+    background: var(--white);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  }
+
+  .pedido-header { text-align: center; margin-bottom: 1.5rem; }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .status-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .status-dot.green { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+  .status-dot.red { background: #ef4444; }
+
+  .form-group { margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-weight: 600; font-size: 0.9rem; }
+  .form-group input, .form-group textarea {
+    padding: 0.8rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-family: inherit;
+  }
+
+  .btn-whatsapp {
+    width: 100%;
+    background-color: #25D366;
+    color: white;
+    font-size: 1rem;
+    padding: 1rem;
+  }
+  .btn-whatsapp.disabled { background-color: #94a3b8; cursor: not-allowed; }
+
+  /* Info Grid */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .info-card {
+    background: var(--white);
+    padding: 2rem;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+  }
+
+  .info-card .icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--text-dark);
+    color: white;
+    font-size: 0.85rem;
+  }
+</style>
