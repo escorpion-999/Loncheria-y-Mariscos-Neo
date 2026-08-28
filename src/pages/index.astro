@@ -1,49 +1,70 @@
 ---
-// DATOS DEL MENÚ EXTRAÍDOS DE TUS IMÁGENES
-const nombreNegocio = "Lonchería y Mariscos Neo";
-const telefono = "5214651505273";
-const direccion = "Emiliano Zapata #405";
-
-const menuLoncheria = [
-  { nombre: "Sandwich", precio: "$35" },
-  { nombre: "Nuggets", precio: "$65" },
-  { nombre: "Salchipulpos", precio: "$50" },
-  { nombre: "Enchiladas Verdes", precio: "$65" },
-  { nombre: "Hamburguesa de Res", precio: "Con papas $90 | Sin papas $70" },
-  { nombre: "Hamburguesa de Pollo", precio: "Con papas $85 | Sin papas $65" },
-  { nombre: "Hamburguesa de Pescado", precio: "Con papas $85 | Sin papas $65" },
-  { nombre: "Pechuga a la Plancha", precio: "$115" },
-  { nombre: "Pechuga Empanizada", precio: "$120" },
-  { nombre: "Pechuga Rellena", precio: "$170" },
-];
-
-const menuMariscos = [
-  { nombre: "Filete a la Plancha", precio: "$120" },
-  { nombre: "Filete Empanizado", precio: "$130" },
-  { nombre: "Filete a la Diabla", precio: "$155" },
-  { nombre: "Camarones Empanizados", precio: "$160" },
-  { nombre: "Camarones a la Diabla", precio: "$170" },
-  { nombre: "Camarones Rellenos", precio: "$185" },
-  { nombre: "Coctel Chico", precio: "Con pulpo $75 | Sin pulpo $65" },
-  { nombre: "Coctel Mediano", precio: "Con pulpo $120 | Sin pulpo $110" },
-  { nombre: "Coctel Grande", precio: "Con pulpo $165 | Sin pulpo $150" },
-];
-
-const menuCeviches = [
-  { nombre: "Orden de Aguachile", precio: "$170" },
-  { nombre: "Orden Ceviche de Pescado", precio: "$120" },
-  { nombre: "Orden Ceviche de Camarón", precio: "$160" },
-  { nombre: "Tostada de Aguachile", precio: "$50" },
-  { nombre: "Tostada Ceviche de Pescado", precio: "$35" },
-  { nombre: "Tostada Ceviche de Camarón", precio: "$45" },
+// DATOS DEL MENÚ SEPARADOS POR TIPO (PLATILLOS Y BEBIDAS)
+const menuPlatillos = [
+  {
+    categoria: "Ceviches y Aguachiles - Órdenes",
+    items: [
+      { id: "aguachile-ord", nombre: "Orden de Aguachile", precio: "$170", imagen: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=500&q=80" },
+      { id: "ceviche-pescado-ord", nombre: "Orden Ceviche de Pescado", precio: "$120", imagen: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=500&q=80" },
+      { id: "ceviche-camaron-ord", nombre: "Orden Ceviche de Camarón", precio: "$160", imagen: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=500&q=80" },
+    ]
+  },
+  {
+    categoria: "Ceviches y Aguachiles - Tostadas",
+    items: [
+      { id: "tostada-aguachile", nombre: "Tostada de Aguachile", precio: "$50", imagen: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=500&q=80" },
+      { id: "tostada-ceviche-pescado", nombre: "Tostada Ceviche de Pescado", precio: "$35", imagen: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=500&q=80" },
+      { id: "tostada-ceviche-camaron", nombre: "Tostada Ceviche de Camarón", precio: "$45", imagen: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=500&q=80" },
+    ]
+  },
+  {
+    categoria: "Lonchería",
+    items: [
+      { id: "sandwich", nombre: "Sandwich", precio: "$35", imagen: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=500&q=80" },
+      { id: "nuggets", nombre: "Nuggets", precio: "$65", imagen: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=500&q=80" },
+      { id: "salchipulpos", nombre: "Salchipulpos", precio: "$50", imagen: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=500&q=80" },
+      { id: "enchiladas-verdes", nombre: "Enchiladas Verdes", precio: "$65", imagen: "https://images.unsplash.com/photo-1584208124888-3a20b9c799e2?auto=format&fit=crop&w=500&q=80" },
+      { id: "burguer-res-papas", nombre: "Hamburguesa de Res (Con Papas)", precio: "$90", imagen: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" },
+      { id: "burguer-res-sin-papas", nombre: "Hamburguesa de Res (Sin Papas)", precio: "$70", imagen: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" },
+      { id: "burguer-pollo-papas", nombre: "Hamburguesa de Pollo (Con Papas)", precio: "$85", imagen: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" },
+      { id: "burguer-pollo-sin-papas", nombre: "Hamburguesa de Pollo (Sin Papas)", precio: "$65", imagen: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" },
+      { id: "burguer-pez-papas", nombre: "Hamburguesa de Pez (Con Papas)", precio: "$85", imagen: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" },
+      { id: "burguer-pez-sin-papas", nombre: "Hamburguesa de Pez (Sin Papas)", precio: "$65", imagen: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" },
+      { id: "pechuga-plancha", nombre: "Pechuga a la Plancha", precio: "$115", imagen: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=500&q=80" },
+      { id: "pechuga-empanizada", nombre: "Pechuga Empanizada", precio: "$120", imagen: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=500&q=80" },
+      { id: "pechuga-rellena", nombre: "Pechuga Rellena", precio: "$170", imagen: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=500&q=80" },
+    ]
+  },
+  {
+    categoria: "Mariscos",
+    items: [
+      { id: "filete-plancha", nombre: "Filete a la Plancha", precio: "$120", imagen: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=500&q=80" },
+      { id: "filete-empanizado", nombre: "Filete Empanizado", precio: "$130", imagen: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=500&q=80" },
+      { id: "filete-diabla", nombre: "Filete a la Diabla", precio: "$155", imagen: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=500&q=80" },
+      { id: "camarones-empanizados", nombre: "Camarones Empanizados", precio: "$160", imagen: "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=500&q=80" },
+      { id: "camarones-diabla", nombre: "Camarones a la Diabla", precio: "$170", imagen: "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=500&q=80" },
+      { id: "camarones-rellenos", nombre: "Camarones Rellenos", precio: "$185", imagen: "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=500&q=80" },
+      { id: "coctel-chico-pulpo", nombre: "Coctel Chico (Con Pulpo)", precio: "$75", imagen: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=500&q=80" },
+      { id: "coctel-chico-sin-pulpo", nombre: "Coctel Chico (Sin Pulpo)", precio: "$65", imagen: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=500&q=80" },
+      { id: "coctel-mediano-pulpo", nombre: "Coctel Mediano (Con Pulpo)", precio: "$120", imagen: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=500&q=80" },
+      { id: "coctel-mediano-sin-pulpo", nombre: "Coctel Mediano (Sin Pulpo)", precio: "$110", imagen: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=500&q=80" },
+      { id: "coctel-grande-pulpo", nombre: "Coctel Grande (Con Pulpo)", precio: "$165", imagen: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=500&q=80" },
+      { id: "coctel-grande-sin-pulpo", nombre: "Coctel Grande (Sin Pulpo)", precio: "$150", imagen: "https://images.unsplash.com/photo-1535400255456-984241443b29?auto=format&fit=crop&w=500&q=80" },
+    ]
+  }
 ];
 
 const menuBebidas = [
-  { nombre: "Jugos", precio: "$25" },
-  { nombre: "Refrescos", precio: "$25" },
-  { nombre: "Agua Fresca 1/2 Litro", precio: "$20" },
-  { nombre: "Agua Fresca 1 Litro", precio: "$35" },
+  { id: "jugos", nombre: "Jugos", precio: "$25", imagen: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=500&q=80" },
+  { id: "refrescos", nombre: "Refrescos", precio: "$25", imagen: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=500&q=80" },
+  { id: "agua-fresca-medio", nombre: "Agua Fresca 1/2 Litro", precio: "$20", imagen: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=500&q=80" },
+  { id: "agua-fresca-litro", nombre: "Agua Fresca 1 Litro", precio: "$35", imagen: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=500&q=80" },
 ];
+
+const todoElMenu = [...menuPlatillos, { categoria: "Bebidas", items: menuBebidas }];
+
+const nombreNegocio = "Lonchería y Mariscos Neo";
+const direccion = "Emiliano Zapata #405";
 ---
 
 <html lang="es">
@@ -52,7 +73,10 @@ const menuBebidas = [
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{nombreNegocio}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FUENTES OFICIALES DEL MENÚ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Inter:wght@400;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
   </head>
   <body>
     <!-- 1. BARRA DE NAVEGACIÓN -->
@@ -65,7 +89,7 @@ const menuBebidas = [
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#menu">Menú Completo</a></li>
           <li><a href="#pedido">Hacer Pedido</a></li>
-          <li><a href="#ubicacion">Ubicación y Horarios</a></li>
+          <li><a href="#ubicacion">Ubicación</a></li>
         </ul>
       </nav>
     </header>
@@ -83,55 +107,32 @@ const menuBebidas = [
       </div>
     </section>
 
-    <!-- 3. SECCIÓN DE MENÚ COMPLETO -->
+    <!-- 3. SECCIÓN DE MENÚ CON TARJETAS E IMÁGENES -->
     <section id="menu" class="section container">
       <h2 class="title">Nuestro Menú</h2>
       <p class="subtitle">Preparado al momento con ingredientes frescos</p>
 
-      <div class="menu-grid">
-        <!-- Lonchería -->
-        <div class="menu-card">
-          <h3>🥪 Lonchería</h3>
-          <ul>
-            {menuLoncheria.map(i => (
-              <li><span>{i.nombre}</span> <strong>{i.precio}</strong></li>
+      {todoElMenu.map((cat) => (
+        <div class="categoria-block">
+          <div class="capsula-categoria">
+            <h3>{cat.categoria}</h3>
+          </div>
+          <div class="menu-grid">
+            {cat.items.map((item) => (
+              <div class="card-platillo">
+                <img src={item.imagen} alt={item.nombre} loading="lazy" />
+                <div class="card-body">
+                  <span class="platillo-nombre">{item.nombre}</span>
+                  <span class="platillo-precio">{item.precio}</span>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
-
-        <!-- Mariscos -->
-        <div class="menu-card highlighted">
-          <h3>🍤 Mariscos</h3>
-          <ul>
-            {menuMariscos.map(i => (
-              <li><span>{i.nombre}</span> <strong>{i.precio}</strong></li>
-            ))}
-          </ul>
-        </div>
-
-        <!-- Ceviches y Aguachiles -->
-        <div class="menu-card">
-          <h3>🍋 Ceviches y Aguachiles</h3>
-          <ul>
-            {menuCeviches.map(i => (
-              <li><span>{i.nombre}</span> <strong>{i.precio}</strong></li>
-            ))}
-          </ul>
-        </div>
-
-        <!-- Bebidas -->
-        <div class="menu-card">
-          <h3>🥤 Bebidas</h3>
-          <ul>
-            {menuBebidas.map(i => (
-              <li><span>{i.nombre}</span> <strong>{i.precio}</strong></li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      ))}
     </section>
 
-    <!-- 4. FORMULARIO DE PEDIDOS POR WHATSAPP + HORARIO -->
+    <!-- 4. FORMULARIO CON SELECTORES DE PLATILLO Y BEBIDA -->
     <section id="pedido" class="section bg-light">
       <div class="container">
         <div class="pedido-box">
@@ -149,19 +150,44 @@ const menuBebidas = [
               <input type="text" id="nombre" placeholder="Ej. Maria López" required />
             </div>
 
+            <!-- SELECTOR 1: PLATILLO -->
             <div class="form-group">
-              <label for="platillo">¿Qué deseas pedir?:</label>
-              <input type="text" id="platillo" placeholder="Ej. 1 Orden de Aguachile y 2 Refrescos" required />
+              <label for="platilloSelect">Selecciona tu Platillo:</label>
+              <select id="platilloSelect" class="form-control" required>
+                <option value="" disabled selected>-- Elige un platillo del menú --</option>
+                {menuPlatillos.map((cat) => (
+                  <optgroup label={cat.categoria}>
+                    {cat.items.map((item) => (
+                      <option value={`${item.nombre} (${item.precio})`}>
+                        {item.nombre} - {item.precio}
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
+            </div>
+
+            <!-- SELECTOR 2: BEBIDA -->
+            <div class="form-group">
+              <label for="bebidaSelect">Selecciona tu Bebida (Opcional):</label>
+              <select id="bebidaSelect" class="form-control">
+                <option value="Sin bebida">-- Sin bebida --</option>
+                {menuBebidas.map((item) => (
+                  <option value={`${item.nombre} (${item.precio})`}>
+                    {item.nombre} - {item.precio}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div class="form-group">
-              <label for="direccion">Dirección de entrega (o indicar para pasar a recoger):</label>
+              <label for="direccion">Dirección de entrega (o indicar si pasas a recoger):</label>
               <input type="text" id="direccion" placeholder="Calle, número y colonia" required />
             </div>
 
             <div class="form-group">
               <label for="notas">Notas o detalles especiales:</label>
-              <textarea id="notas" placeholder="Ej. Sin cebolla, extra salsa..."></textarea>
+              <textarea id="notas" placeholder="Ej. Sin cebolla, extra salsa, sabor del refresco o agua..."></textarea>
             </div>
 
             <button type="submit" id="btnSubmit" class="btn btn-whatsapp">
@@ -194,8 +220,14 @@ const menuBebidas = [
       </div>
     </section>
 
-    <footer>
-      <p>&copy; 2026 {nombreNegocio}. Todos los derechos reservados.</p>
+    <!-- BANDA INFERIOR OFICIAL -->
+    <footer class="footer-oficial">
+      <div class="franja-amarilla"></div>
+      <div class="footer-content">
+        <p class="footer-direccion">EMILIANO ZAPATA #405</p>
+        <p class="footer-telefono">PEDIDOS AL: 449-461-40-74</p>
+        <p class="footer-copy">&copy; 2026 {nombreNegocio}. Todos los derechos reservados.</p>
+      </div>
     </footer>
 
     <!-- LÓGICA DE WHATSAPP Y HORARIOS -->
@@ -205,14 +237,14 @@ const menuBebidas = [
 
       function revisarHorario() {
         const ahora = new Date();
-        const dia = ahora.getDay(); // 0 = Domingo, 1 = Lunes...
+        const dia = ahora.getDay();
         const hora = ahora.getHours();
         const minutos = ahora.getMinutes();
         const tiempoActual = hora * 60 + minutos;
 
-        // Horario: 11:00 AM (660 min) a 7:00 PM / 19:00 (1140 min)
+        // Horario: 11:00 AM a 7:00 PM (19:00 hrs)
         const horaApertura = 11 * 60; 
-        const horaCierre = 20 * 60;        
+        const horaCierre = 19 * 60;        
         const diaCerrado = 1; // Lunes
 
         const dot = document.getElementById('statusIndicator');
@@ -260,13 +292,15 @@ const menuBebidas = [
           e.preventDefault();
 
           const nombre = (document.getElementById('nombre') as HTMLInputElement)?.value || '';
-          const platillo = (document.getElementById('platillo') as HTMLInputElement)?.value || '';
+          const platilloSeleccionado = (document.getElementById('platilloSelect') as HTMLSelectElement)?.value || '';
+          const bebidaSeleccionada = (document.getElementById('bebidaSelect') as HTMLSelectElement)?.value || 'Sin bebida';
           const direccionInput = (document.getElementById('direccion') as HTMLInputElement)?.value || '';
           const notas = (document.getElementById('notas') as HTMLTextAreaElement)?.value || '';
 
           let mensaje = `*NUEVO PEDIDO - LONCHERÍA Y MARISCOS NEO*\n\n`;
           mensaje += `👤 *Cliente:* ${nombre}\n`;
-          mensaje += `🍽️ *Pedido:* ${platillo}\n`;
+          mensaje += `🍽️ *Platillo:* ${platilloSeleccionado}\n`;
+          mensaje += `🥤 *Bebida:* ${bebidaSeleccionada}\n`;
           mensaje += `📍 *Dirección/Entrega:* ${direccionInput}\n`;
           if (notas.trim() !== '') {
             mensaje += `📝 *Notas:* ${notas}\n`;
@@ -280,38 +314,44 @@ const menuBebidas = [
   </body>
 </html>
 
-<!-- ESTILOS PROFESIONALES -->
+<!-- ESTILOS CON LA PALETA Y TIPOGRAFÍAS DE LAS IMÁGENES -->
 <style>
   :root {
-    --primary: #0284c7;
-    --primary-dark: #0369a1;
-    --accent: #f97316;
-    --bg-light: #f0f9ff;
-    --text-dark: #0f172a;
-    --white: #ffffff;
+    --bg-celeste: #53C2E3;
+    --naranja-capsula: #FF7A43;
+    --azul-marino: #0544A8;
+    --amarillo-franja: #FFDF43;
+    --rojo-camaron: #FF3B1D;
+    --azul-cobalto: #083282;
+    --texto-oscuro: #0D1117;
+    --blanco: #ffffff;
+
+    --font-display: 'Fredoka', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Inter', sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'Poppins', sans-serif;
-    color: var(--text-dark);
-    background-color: #fafafa;
+    font-family: var(--font-body);
+    color: var(--texto-oscuro);
+    background-color: var(--bg-celeste);
     scroll-behavior: smooth;
   }
 
-  /* Header / Nav sticky */
+  /* Header / Nav */
   .header {
     position: sticky;
     top: 0;
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     z-index: 100;
   }
 
   .nav-container {
-    max-width: 1100px;
+    max-width: 1300px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -320,9 +360,10 @@ const menuBebidas = [
   }
 
   .logo {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--primary);
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--azul-cobalto);
     text-decoration: none;
   }
 
@@ -334,18 +375,18 @@ const menuBebidas = [
 
   .nav-links a {
     text-decoration: none;
-    color: var(--text-dark);
-    font-weight: 600;
+    color: var(--texto-oscuro);
+    font-weight: 700;
     font-size: 0.95rem;
     transition: color 0.2s;
   }
 
-  .nav-links a:hover { color: var(--primary); }
+  .nav-links a:hover { color: var(--naranja-capsula); }
 
   /* Hero */
   .hero {
-    background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=1400&q=80') center/cover;
-    color: var(--white);
+    background: linear-gradient(rgba(5, 68, 168, 0.75), rgba(5, 68, 168, 0.75)), url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=1400&q=80') center/cover;
+    color: var(--blanco);
     padding: 6rem 1.5rem;
     text-align: center;
   }
@@ -353,25 +394,30 @@ const menuBebidas = [
   .hero-content { max-width: 700px; margin: 0 auto; }
 
   .badge-hero {
-    background: var(--accent);
+    background: var(--naranja-capsula);
     display: inline-block;
-    padding: 0.4rem 1rem;
+    padding: 0.4rem 1.2rem;
     border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
     margin-bottom: 1rem;
   }
 
-  .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; }
-  .hero p { font-size: 1.15rem; margin-bottom: 2rem; opacity: 0.9; }
+  .hero h1 { 
+    font-family: var(--font-display); 
+    font-size: 3rem; 
+    margin-bottom: 1rem; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  .hero p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95; }
 
   .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-  /* Buttons */
   .btn {
     padding: 0.8rem 1.6rem;
     border-radius: 8px;
-    font-weight: 700;
+    font-family: var(--font-heading);
+    font-weight: 800;
     text-decoration: none;
     cursor: pointer;
     border: none;
@@ -379,60 +425,103 @@ const menuBebidas = [
   }
   .btn:hover { transform: translateY(-2px); }
 
-  .btn-primary { background: var(--accent); color: var(--white); }
-  .btn-outline { border: 2px solid white; color: var(--white); }
+  .btn-primary { background: var(--naranja-capsula); color: var(--blanco); }
+  .btn-outline { border: 2px solid white; color: var(--blanco); }
 
   /* Section Styles */
   .container { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; }
-  .bg-light { background-color: var(--bg-light); }
-  .title { text-align: center; font-size: 2.2rem; font-weight: 800; color: var(--primary-dark); }
-  .subtitle { text-align: center; margin-bottom: 3rem; color: #64748b; }
+  .bg-light { background-color: #f0fdf4; border-radius: 20px; }
+  .title { 
+    font-family: var(--font-display); 
+    text-align: center; 
+    font-size: 2.5rem; 
+    color: var(--azul-cobalto); 
+  }
+  .subtitle { text-align: center; margin-bottom: 3rem; color: #334155; font-weight: 600; }
 
-  /* Grid Menú */
+  /* Bloques de Categorías del Menú */
+  .categoria-block {
+    margin-bottom: 3rem;
+  }
+
+  .capsula-categoria {
+    background-color: var(--naranja-capsula);
+    color: var(--blanco);
+    display: inline-block;
+    padding: 0.6rem 2rem;
+    border-radius: 30px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .capsula-categoria h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* Grid y Tarjetas de Platillos */
   .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
   }
 
-  .menu-card {
-    background: var(--white);
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border: 1px solid #e2e8f0;
-  }
-
-  .menu-card.highlighted { border: 2px solid var(--primary); }
-
-  .menu-card h3 {
-    color: var(--primary);
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--bg-light);
-  }
-
-  .menu-card ul { list-style: none; }
-  .menu-card li {
+  .card-platillo {
+    background: var(--blanco);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+  }
+
+  .card-platillo:hover {
+    transform: translateY(-4px);
+  }
+
+  .card-platillo img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+  }
+
+  .card-body {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 0.75rem;
-    font-size: 0.9rem;
+    flex-grow: 1;
     gap: 0.5rem;
+  }
+
+  .platillo-nombre {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--texto-oscuro);
+  }
+
+  .platillo-precio {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--azul-cobalto);
+    align-self: flex-end;
   }
 
   /* Formulario Pedido */
   .pedido-box {
-    background: var(--white);
+    background: var(--blanco);
     max-width: 600px;
     margin: 0 auto;
     padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   }
 
   .pedido-header { text-align: center; margin-bottom: 1.5rem; }
+  .pedido-header h2 { font-family: var(--font-display); color: var(--azul-cobalto); }
 
   .status-badge {
     display: inline-flex;
@@ -448,19 +537,28 @@ const menuBebidas = [
   .status-dot.red { background: #ef4444; }
 
   .form-group { margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-group label { font-weight: 600; font-size: 0.9rem; }
-  .form-group input, .form-group textarea {
+  .form-group label { font-weight: 700; font-size: 0.9rem; color: var(--azul-cobalto); }
+  
+  .form-group input, 
+  .form-group select, 
+  .form-group textarea {
     padding: 0.8rem;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
+    border: 2px solid #cbd5e1;
+    border-radius: 10px;
     font-family: inherit;
+    font-size: 0.95rem;
+  }
+
+  .form-group select {
+    background-color: #f8fafc;
+    cursor: pointer;
   }
 
   .btn-whatsapp {
     width: 100%;
     background-color: #25D366;
     color: white;
-    font-size: 1rem;
+    font-size: 1.1rem;
     padding: 1rem;
   }
   .btn-whatsapp.disabled { background-color: #94a3b8; cursor: not-allowed; }
@@ -474,20 +572,45 @@ const menuBebidas = [
   }
 
   .info-card {
-    background: var(--white);
+    background: var(--blanco);
     padding: 2rem;
     text-align: center;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   }
 
+  .info-card h3 { font-family: var(--font-heading); color: var(--azul-cobalto); margin-bottom: 0.5rem; }
   .info-card .icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
 
-  footer {
+  /* Footer Oficial */
+  .footer-oficial {
+    background-color: var(--azul-marino);
+    color: var(--blanco);
     text-align: center;
-    padding: 2rem;
-    background: var(--text-dark);
-    color: white;
+    position: relative;
+    margin-top: 4rem;
+  }
+
+  .franja-amarilla {
+    height: 12px;
+    background-color: var(--amarillo-franja);
+  }
+
+  .footer-content {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .footer-direccion, 
+  .footer-telefono {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-copy {
     font-size: 0.85rem;
+    opacity: 0.8;
+    margin-top: 1rem;
   }
 </style>
