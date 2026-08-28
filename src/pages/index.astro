@@ -79,17 +79,22 @@ const direccion = "Emiliano Zapata #405";
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Inter:wght@400;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
   </head>
   <body>
-    <!-- 1. BARRA DE NAVEGACIÓN -->
+    <!-- 1. BARRA DE NAVEGACIÓN ADAPTATIVA -->
     <header class="header">
       <nav class="nav-container">
         <a href="#" class="logo">
           <span class="logo-icon">🦐</span> {nombreNegocio}
         </a>
-        <ul class="nav-links">
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#menu">Menú Completo</a></li>
-          <li><a href="#pedido">Hacer Pedido</a></li>
-          <li><a href="#ubicacion">Ubicación</a></li>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#inicio" class="nav-item">Inicio</a></li>
+          <li><a href="#menu" class="nav-item">Menú Completo</a></li>
+          <li><a href="#pedido" class="nav-item">Hacer Pedido</a></li>
+          <li><a href="#ubicacion" class="nav-item">Ubicación</a></li>
         </ul>
       </nav>
     </header>
@@ -107,7 +112,7 @@ const direccion = "Emiliano Zapata #405";
       </div>
     </section>
 
-    <!-- 3. SECCIÓN DE MENÚ CON TARJETAS E IMÁGENES -->
+    <!-- 3. SECCIÓN DE MENÚ RESPONSIVO -->
     <section id="menu" class="section container">
       <h2 class="title">Nuestro Menú</h2>
       <p class="subtitle">Preparado al momento con ingredientes frescos</p>
@@ -132,7 +137,7 @@ const direccion = "Emiliano Zapata #405";
       ))}
     </section>
 
-    <!-- 4. FORMULARIO CON SELECTORES DE PLATILLO Y BEBIDA -->
+    <!-- 4. FORMULARIO CON SELECTORES Y RESPONSIVIDAD -->
     <section id="pedido" class="section bg-light">
       <div class="container">
         <div class="pedido-box">
@@ -187,7 +192,7 @@ const direccion = "Emiliano Zapata #405";
 
             <div class="form-group">
               <label for="notas">Notas o detalles especiales:</label>
-              <textarea id="notas" placeholder="Ej. Sin cebolla, extra salsa, sabor del refresco o agua..."></textarea>
+              <textarea id="notas" rows="3" placeholder="Ej. Sin cebolla, extra salsa, sabor del refresco o agua..."></textarea>
             </div>
 
             <button type="submit" id="btnSubmit" class="btn btn-whatsapp">
@@ -198,7 +203,7 @@ const direccion = "Emiliano Zapata #405";
       </div>
     </section>
 
-    <!-- 5. UBICACIÓN, CONTACTO Y HORARIOS -->
+    <!-- 5. UBICACIÓN Y CONTACTO -->
     <section id="ubicacion" class="section container">
       <h2 class="title">Visítanos o Contáctanos</h2>
       <div class="info-grid">
@@ -230,11 +235,32 @@ const direccion = "Emiliano Zapata #405";
       </div>
     </footer>
 
-    <!-- LÓGICA DE WHATSAPP Y HORARIOS -->
+    <!-- LÓGICA INTERACTIVA: MENÚ HAMBURGUESA, WHATSAPP Y HORARIO -->
     <script>
       let estaAbierto = false;
       const numeroTel = "5214651505273";
 
+      // MENÚ MOBILE TOGGLE
+      const navToggle = document.getElementById('navToggle');
+      const navLinks = document.getElementById('navLinks');
+      const navItems = document.querySelectorAll('.nav-item');
+
+      if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+          navToggle.classList.toggle('open');
+        });
+
+        // Cerrar menú móvil al presionar una opción
+        navItems.forEach(item => {
+          item.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            navToggle.classList.remove('open');
+          });
+        });
+      }
+
+      // CONTROL DE HORARIOS
       function revisarHorario() {
         const ahora = new Date();
         const dia = ahora.getDay();
@@ -242,10 +268,9 @@ const direccion = "Emiliano Zapata #405";
         const minutos = ahora.getMinutes();
         const tiempoActual = hora * 60 + minutos;
 
-        // Horario: 11:00 AM a 7:00 PM (19:00 hrs)
-        const horaApertura = 11 * 60; 
-        const horaCierre = 19 * 60;        
-        const diaCerrado = 1; // Lunes
+        const horaApertura = 11 * 60; // 11:00 AM
+        const horaCierre = 19 * 60;   // 7:00 PM
+        const diaCerrado = 1;         // Lunes
 
         const dot = document.getElementById('statusIndicator');
         const text = document.getElementById('statusText');
@@ -285,6 +310,7 @@ const direccion = "Emiliano Zapata #405";
 
       revisarHorario();
 
+      // ENVÍO DE PEDIDO POR WHATSAPP
       const form = document.getElementById('formPedido') as HTMLFormElement;
 
       if (form) {
@@ -314,7 +340,7 @@ const direccion = "Emiliano Zapata #405";
   </body>
 </html>
 
-<!-- ESTILOS CON LA PALETA Y TIPOGRAFÍAS DE LAS IMÁGENES -->
+<!-- ESTILOS COMPLETO CON MEDIA QUERIES RESPONSIVAS -->
 <style>
   :root {
     --bg-celeste: #53C2E3;
@@ -338,20 +364,21 @@ const direccion = "Emiliano Zapata #405";
     color: var(--texto-oscuro);
     background-color: var(--bg-celeste);
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   /* Header / Nav */
   .header {
     position: sticky;
     top: 0;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(8px);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     z-index: 100;
   }
 
   .nav-container {
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -361,10 +388,32 @@ const direccion = "Emiliano Zapata #405";
 
   .logo {
     font-family: var(--font-display);
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--azul-cobalto);
     text-decoration: none;
+    z-index: 101;
+  }
+
+  /* Menú Hamburguesa en Móviles */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 101;
+  }
+
+  .nav-toggle span {
+    width: 100%;
+    height: 3px;
+    background-color: var(--azul-cobalto);
+    border-radius: 2px;
+    transition: all 0.3s ease;
   }
 
   .nav-links {
@@ -387,7 +436,7 @@ const direccion = "Emiliano Zapata #405";
   .hero {
     background: linear-gradient(rgba(5, 68, 168, 0.75), rgba(5, 68, 168, 0.75)), url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=1400&q=80') center/cover;
     color: var(--blanco);
-    padding: 6rem 1.5rem;
+    padding: 5rem 1.5rem;
     text-align: center;
   }
 
@@ -399,17 +448,18 @@ const direccion = "Emiliano Zapata #405";
     padding: 0.4rem 1.2rem;
     border-radius: 20px;
     font-family: var(--font-heading);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     margin-bottom: 1rem;
   }
 
   .hero h1 { 
     font-family: var(--font-display); 
-    font-size: 3rem; 
+    font-size: clamp(2rem, 5vw, 3.2rem); 
     margin-bottom: 1rem; 
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    line-height: 1.1;
   }
-  .hero p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95; }
+  .hero p { font-size: clamp(1rem, 2.5vw, 1.25rem); margin-bottom: 2rem; opacity: 0.95; }
 
   .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
@@ -422,6 +472,8 @@ const direccion = "Emiliano Zapata #405";
     cursor: pointer;
     border: none;
     transition: transform 0.2s, background-color 0.2s;
+    display: inline-block;
+    text-align: center;
   }
   .btn:hover { transform: translateY(-2px); }
 
@@ -429,26 +481,24 @@ const direccion = "Emiliano Zapata #405";
   .btn-outline { border: 2px solid white; color: var(--blanco); }
 
   /* Section Styles */
-  .container { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem; }
   .bg-light { background-color: #f0fdf4; border-radius: 20px; }
   .title { 
     font-family: var(--font-display); 
     text-align: center; 
-    font-size: 2.5rem; 
+    font-size: clamp(1.8rem, 4vw, 2.5rem); 
     color: var(--azul-cobalto); 
   }
-  .subtitle { text-align: center; margin-bottom: 3rem; color: #334155; font-weight: 600; }
+  .subtitle { text-align: center; margin-bottom: 2.5rem; color: #334155; font-weight: 600; font-size: 0.95rem; }
 
-  /* Bloques de Categorías del Menú */
-  .categoria-block {
-    margin-bottom: 3rem;
-  }
+  /* Categorías del Menú */
+  .categoria-block { margin-bottom: 3rem; }
 
   .capsula-categoria {
     background-color: var(--naranja-capsula);
     color: var(--blanco);
     display: inline-block;
-    padding: 0.6rem 2rem;
+    padding: 0.5rem 1.5rem;
     border-radius: 30px;
     margin-bottom: 1.5rem;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -456,15 +506,15 @@ const direccion = "Emiliano Zapata #405";
 
   .capsula-categoria h3 {
     font-family: var(--font-display);
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     letter-spacing: 0.5px;
   }
 
-  /* Grid y Tarjetas de Platillos */
+  /* Grid y Tarjetas de Platillos Adaptativas */
   .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
   }
 
   .card-platillo {
@@ -477,13 +527,11 @@ const direccion = "Emiliano Zapata #405";
     transition: transform 0.2s;
   }
 
-  .card-platillo:hover {
-    transform: translateY(-4px);
-  }
+  .card-platillo:hover { transform: translateY(-4px); }
 
   .card-platillo img {
     width: 100%;
-    height: 140px;
+    height: 150px;
     object-fit: cover;
   }
 
@@ -496,12 +544,7 @@ const direccion = "Emiliano Zapata #405";
     gap: 0.5rem;
   }
 
-  .platillo-nombre {
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--texto-oscuro);
-  }
-
+  .platillo-nombre { font-weight: 700; font-size: 0.95rem; color: var(--texto-oscuro); }
   .platillo-precio {
     font-family: var(--font-heading);
     font-size: 1.2rem;
@@ -515,13 +558,13 @@ const direccion = "Emiliano Zapata #405";
     background: var(--blanco);
     max-width: 600px;
     margin: 0 auto;
-    padding: 2.5rem;
+    padding: 2rem 1.5rem;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   }
 
   .pedido-header { text-align: center; margin-bottom: 1.5rem; }
-  .pedido-header h2 { font-family: var(--font-display); color: var(--azul-cobalto); }
+  .pedido-header h2 { font-family: var(--font-display); color: var(--azul-cobalto); font-size: 1.8rem; }
 
   .status-badge {
     display: inline-flex;
@@ -542,38 +585,37 @@ const direccion = "Emiliano Zapata #405";
   .form-group input, 
   .form-group select, 
   .form-group textarea {
-    padding: 0.8rem;
+    padding: 0.85rem;
     border: 2px solid #cbd5e1;
     border-radius: 10px;
     font-family: inherit;
     font-size: 0.95rem;
+    width: 100%;
   }
 
-  .form-group select {
-    background-color: #f8fafc;
-    cursor: pointer;
-  }
+  .form-group select { background-color: #f8fafc; cursor: pointer; }
 
   .btn-whatsapp {
     width: 100%;
     background-color: #25D366;
     color: white;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     padding: 1rem;
+    margin-top: 0.5rem;
   }
   .btn-whatsapp.disabled { background-color: #94a3b8; cursor: not-allowed; }
 
   /* Info Grid */
   .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
   }
 
   .info-card {
     background: var(--blanco);
-    padding: 2rem;
+    padding: 2rem 1.5rem;
     text-align: center;
     border-radius: 16px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -591,26 +633,88 @@ const direccion = "Emiliano Zapata #405";
     margin-top: 4rem;
   }
 
-  .franja-amarilla {
-    height: 12px;
-    background-color: var(--amarillo-franja);
-  }
-
-  .footer-content {
-    padding: 2.5rem 1.5rem;
-  }
+  .franja-amarilla { height: 12px; background-color: var(--amarillo-franja); }
+  .footer-content { padding: 2.5rem 1.5rem; }
 
   .footer-direccion, 
   .footer-telefono {
     font-family: var(--font-display);
-    font-size: 1.8rem;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
   }
 
-  .footer-copy {
-    font-size: 0.85rem;
-    opacity: 0.8;
-    margin-top: 1rem;
+  .footer-copy { font-size: 0.85rem; opacity: 0.8; margin-top: 1rem; }
+
+  /* ===================================================
+     MEDIA QUERIES - RESPONSIVIDAD PARA CELULARES Y TABLETS
+     =================================================== */
+
+  /* Móviles (Pantallas de hasta 768px) */
+  @media (max-width: 768px) {
+    .nav-toggle { display: flex; }
+
+    .nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: var(--blanco);
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active { max-height: 300px; }
+
+    .nav-links li { width: 100%; text-align: center; }
+
+    .nav-links a {
+      display: block;
+      padding: 1rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    /* Animación icono menú hamburguesa */
+    .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+    .hero-btns { flex-direction: column; width: 100%; }
+    .hero-btns .btn { width: 100%; }
+
+    .menu-grid {
+      grid-template-columns: 1fr; /* Una columna en celulares */
+    }
+
+    .card-platillo {
+      flex-direction: row;
+      align-items: center;
+      height: 110px;
+    }
+
+    .card-platillo img {
+      width: 110px;
+      height: 100%;
+    }
+
+    .card-body {
+      padding: 0.8rem;
+    }
+
+    .platillo-precio {
+      align-self: flex-start;
+    }
+  }
+
+  /* Tablets (769px a 1024px) */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .menu-grid {
+      grid-template-columns: repeat(2, 1fr); /* Dos columnas en tablets */
+    }
   }
 </style>
